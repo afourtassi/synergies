@@ -1,0 +1,116 @@
+<!-- ## Code -->
+<html>
+<head>
+	<title>Form/Concept experiment </title>
+	<!-- Include the [jQuery library](http://jquery.com/), which helps you manipulate HTML elements from JS. -->
+	<script src="jquery-1.11.2.min.js"></script>
+	<!-- [mmturkey]: http://github.com/longouyang/mmturkey -->
+	<script src="mmturkey-0.6.js"></script>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- The instructions slide. -->
+<div class="slide" id="instructions">
+  <div style="width: 500px; margin: 0 auto; text-align: center; background-color: #8C1516; padding: 20px 15px 10px 10px">
+    <img src="images/stanford.png" height="46" width="360" alt="Stanford University">
+  </div>
+		<p id='logo-text'>Stanford Language and Cognition Lab</p>
+	<p class="block-text">
+        This is an experiment that tests aspects of human word learning. 
+        You will be shown pairs of objects and hear their names. You should decide if the pair reprsents one word (or a variation of the same word), in which case you should press <span class="same-key">{{}}</span>,  or if the pair represents two words, <span class="different-key">{{}}</span> (detailed instructions will be provide as the experiment develops). <br><br>
+		
+        <b>The experiment requires that you listen carefully. Please make sure that no music is played in the background. Put your headphones on or make sure you are in a quiet environment.</b>
+        </p>
+        
+        <p class="block-text">DO ONLY ONE "CHILD DEVELOPMENT SURVEY" HIT. IF YOU DO MULTIPLE HITS OF THIS TYPE, YOU WILL NOT BE PAID!
+    </p>
+        
+
+	<!-- Button to start the experiment. <code>this.blur()</code> removes the focus from the button, if the user pressed the button by using the keyboard, rather than the mouse. -->
+	<button type="button" onclick="this.blur(); experiment.next()">Start</button>
+	<!-- Legal blurb that we're required to show. -->
+    
+     <p class="block-text"><br> <b> Note: you won't be able to preview this HIT before accepting it because it's so short. </b></p>
+
+  <p class="block-text" id="legal">By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact us at <a href="mailto://languagecoglab@gmail.com.">languagecoglab@gmail.com</a>. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you. Note however that we have recently been made aware that your public Amazon.com profile can be accessed via your worker ID if you do not choose to opt out. If you would like to opt out of this feature, you may follow instructions available <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=16465241">here</a>.</p>
+</div>
+<!-- The "stage" slide - where the bulk of the experiment will be displayed. Again, note the use of <code>{{}}</code>. -->
+<div class="slide" id="stage">
+    <audio id='sound_left' autoplay='autoplay'></audio>
+    <audio id='sound_right' autoplay='autoplay'></audio>
+    <div id="word_left">
+        <p id="pic_left">{{}}</p>
+        
+    </div>
+    <div id="word_right">
+        <p id="pic_right">{{}}</p>
+        
+    </div>
+    <div id="intruct_text">
+        <p class="block-text"> Press <span class="same-key">{{}}</span> if you think the pair of objects represent one word, and
+		<span class="different-key">{{}}</span> if you think the objects represent two words. </p>
+    </div>
+    
+	
+</div>
+    
+<!-- Instruction for training. -->
+    
+<div class="slide" id="pre_instruction">
+
+  <br>
+
+  <p class="block-text"> The goal of this part of the experiment is to get you familiar with the task. In each trial, you will see two objects and simultaneously hear their real names in Engish. You should press <span class="same-key">{{}}</span> if you think the pair  represent one word, and <span class="different-key">{{}}</span> if you think the objects represent two words. </p>
+
+  <table align="center"><tr>
+    <td align="center">
+      <button type="button" id="nextButton_choice" onClick="this.blur(); experiment.next()"> Continue</button>
+    </td> 
+    <tr><td align="center">
+
+    </td></tr> 
+
+  </table>
+
+</div>
+
+    
+<!-- Instructions for real -->
+<div class="slide" id="real_instruction">
+
+  <br>
+
+    <p class="block-text">You are now about to start the real experiment. As before, you will be shown two objects and hear their names. <br><br> IMPORTANT: the names you will hear are no more real english words, but artificial words. They will sound like either <b>ABA</b> or <b>ADA</b>.   As before, you should press <span class="same-key">{{}}</span> if you think the pair represents one word (that is, 2 variations of <b>ABA</b>s or 2 variations of <b>ADA</b>s), and <span class="different-key">{{}}</span> if you think the items represent two words (1 <b>ABA</b> and 1 <b>APA</b>).
+    <!-- this does not account for homophony -->
+        
+    Some trials are purposefully made ambiguous. If you hesitate, go ahead and give the answer that you think is more plausible!<br><br>
+        
+    Note that each trial (i.e., naming of a pair of objects) is independent. Therefore, your answer on one trial is not necessarily related to you other answers  on subsequent trials.
+        
+        
+    </p>
+
+  <table align="center"><tr>
+    <td align="center">
+      <button type="button" id="nextButton_choice" onClick="this.blur(); experiment.next()"> Continue</button>
+    </td> 
+    <tr><td align="center">
+
+    </td></tr> 
+
+  </table>
+
+</div>    
+<!-- The finish slide. -->
+<div class="slide" id="finished">
+	You're finished - thanks for participating! Submitting to Mechanical Turk...
+</div>
+
+<!-- Include the <a href="experiment.html">JavaScript file for the experiment</a>. As written, that script immediately executes commands, so we include it here at the end of the HTML file to ensure that resources referenced by the script actually exist. For instance, one of the immediately executed commands is <code>showSlide("instructions")</code>. If we loaded experiment.js, say, in the <code>head</code> section, <code>showSlide("instructions")</code> would fail because the <code>instructions</code> slide doesn't exist yet. It is possible to load the script in <code>head</code> but you have to ensure that any immediately executed commands, if they rely on potentially uninitialized HTML elements, are _delayed_ until the page is ready, using either [window.onload][onload] or jQuery's more robust [$(document).ready()][domReady]  -->
+<!-- [onload]: https://developer.mozilla.org/en/DOM/window.onload -->
+<!-- [domReady]: http://api.jquery.com/ready/ -->
+<script src="experiment1.js"></script>
+
+</body>
+</html>
