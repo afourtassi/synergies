@@ -17,7 +17,7 @@
   </div>
 		<p id='logo-text'>Stanford Language and Cognition Lab</p>
 	<p class="block-text">
-        This is an experiment that tests aspects of human word learning. The experiment involves audio sequences. Please make sure that no music is played in the background. Put your headphones on or make sure you are in a quiet environment.
+        This is an experiment that tests aspects of human word learning.  The experiment involves audio sequences. Please make sure that no music is played in the background. Put your headphones on or make sure you are in a quiet environment.
         </p>
         
         <p class="block-text">DO ONLY ONE "WORD LEARNING EXPERIMENT" HIT. IF YOU DO MULTIPLE HITS OF THIS TYPE, YOU WILL NOT BE PAID!
@@ -105,15 +105,17 @@
 
   <br>
 
-    <p class="block-text"> Now you will start the real task. Please make sure that you read and understand the following instructions: </p>  
+    <p class="block-text"> Now you will start the real task. Please make sure that you read and understand the following instructions:</p>  
 
     <p class="block-text"> Contrary to the training, the alien will NOT be speaking in English, but in an alien language. This language contains only two words: "ABA" and "ADA". </p>
         
-    <p class="block-text">  As before, the alien will describe two new objects either by different words (in this case by ABA - ADA) or by a same word (ABA - ABA).</p>
-    
-    <p class="block-text"> A difficulty for the other alien, however, is that two instances of ABA can be pronounced slightly differently, and can sometimes be hard to distinguish from the two words ABA-ADA. You should help the other alien in this task based on both the sounds and the objects being descibed.</p>
+    <p class="block-text">  As before, the alien will describe two new objects either by different words (in this case by ABA - ADA) or by a same word (ABA - ABA). </p>
         
-    <p class="block-text"> In each trial, you should press <span class="same-key">{{}}</span> if you think that the objects are being described by the <b>same</b> word (ABA - ABA) even when they are  pronounced slightly differently, and press <span class="different-key">{{}}</span> if you think the objects are being described by 2 <b>different</b> words (ABA - ADA). </p>
+    <p class="block-text"> One difficulty for the other alien, however, is that two instances of ABA can be pronounced slightly differently, and can sometimes be hard to distinguish from the two words ABA-ADA. </p>
+    
+    <p class="block-text"> <b>Another difficulty is that the objects being described will be hidden. You should help the other alien in this task based on the sounds only.</b>  </p>
+    
+    <p class="block-text"> In each trial, you should press <span class="same-key">{{}}</span> if you think that the hidden objects are being described by the <b>same</b> words (ABA - ABA) even when they are  pronounced slightly differently, and press <span class="different-key">{{}}</span> if you think the objects are being described by 2 <b>different</b> words (ABA - ADA). </p>
     
     <p class="block-text"> Note that each trial is independent. Therefore, your answer on one trial is not necessarily related to you other answers on subsequent trials.</p>
 
@@ -143,7 +145,7 @@
 <!-- Include the <a href="experiment.html">JavaScript file for the experiment</a>. As written, that script immediately executes commands, so we include it here at the end of the HTML file to ensure that resources referenced by the script actually exist. For instance, one of the immediately executed commands is <code>showSlide("instructions")</code>. If we loaded experiment.js, say, in the <code>head</code> section, <code>showSlide("instructions")</code> would fail because the <code>instructions</code> slide doesn't exist yet. It is possible to load the script in <code>head</code> but you have to ensure that any immediately executed commands, if they rely on potentially uninitialized HTML elements, are _delayed_ until the page is ready, using either [window.onload][onload] or jQuery's more robust [$(document).ready()][domReady]  -->
 <!-- [onload]: https://developer.mozilla.org/en/DOM/window.onload -->
 <!-- [domReady]: http://api.jquery.com/ready/ -->
-<script src="experiment1.js"></script>
+<script src="experiment_sound.js"></script>
 
 </body>
 </html>
