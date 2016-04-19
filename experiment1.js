@@ -35,16 +35,17 @@ function randomElement(array) {
 
 //Stimuli (training)
 
-var concept_pre_0='apple.jpg',
-    sound_pre_0='apple.wav',
-    concept_pre_1=['phon.jpg','lion.jpg','apple2.jpg'],
-    sound_pre_1 = ['phone.wav', 'lion.wav', 'apple.wav'];
+var concept_pre_0=['apple.jpg', 'apple.jpg', 'apple.jpg', 'apple.jpg']
+    sound_pre_0=['apple.wav','apple.wav','apple.wav','food.wav' ],
+    concept_pre_1=['phon.jpg','lion.jpg','apple2.jpg', 'sandwich.jpg'],
+    sound_pre_1 = ['phone.wav', 'lion.wav', 'apple.wav','food.wav'];
+  
     
 //shuffle order of exposure 
-var Trials_pre=shuffleArray([0,1,2]);
+var Trials_pre=shuffleArray([0,1,2,3]);
 
 //identical concept-sound mapping
-var SoundToConcept_Map_pre=[0,1,2]; 
+var SoundToConcept_Map_pre=[0,1,2,3]; 
 
 //Stimuli (real)
 var concept_0= 'cow.jpg',
@@ -121,10 +122,10 @@ for (i=0; i < total_pre; i++){
     myTrial = {
         trial_number: 0,
         trial_type: "pre",
-        concept_l:concept_pre_0,
+        concept_l:concept_pre_0[Trials_pre[i]],
         concept_r:concept_pre_1[Trials_pre[i]],
         concept_dist:'',
-        sound_l:sound_pre_0,
+        sound_l:sound_pre_0[SoundToConcept_Map_pre[Trials_pre[i]]],
         sound_r:sound_pre_1[SoundToConcept_Map_pre[Trials_pre[i]]],
         sound_dist:''
         //sound_dist:''
@@ -204,7 +205,7 @@ var experiment = {
     // Get the current trial - <code>shift()</code> removes the first element of the array and returns it.
     var current_trial = experiment.trials.shift();
       
-    if (current_trial.trial_number == "pre_instruction")
+    if (current_trial.trial_type == "pre_instruction")
         {
             showSlide("pre_instruction");
         }
@@ -229,25 +230,29 @@ var experiment = {
     showSlide("stage");
       
     // Display the pictures.
+    
+    $("#pic_alien").html("<center><img src='images/alien2.png' height='170' width='250'></center>");
+        
+    $("#pic_left").html("<center><img src='images/"+current_concept_l+"' height='170' width='250'></center>");
       
-    $("#pic_left").html("<center><img src='images/"+current_concept_l+"' height='200' width='300'></center>");
-      
-    $("#pic_right").html("<center><img src='images/"+current_concept_r+"' height='200' width='300'></center>");
+    $("#pic_right").html("<center><img src='images/"+current_concept_r+"' height='170' width='250'></center>");
       
     //Play the sound for the left word then the sound for the right word
   
     var MySound1 = $('#sound_left')[0];
-    MySound1.setAttribute('src', '/sounds/'+current_sound_l);
+    MySound1.setAttribute('src', 'sounds/'+current_sound_l);
     MySound1.play();
       
     $('#sound_left').on('ended', function() {
         
     $("#word_left").css({"background-color": "white"});
+        
+    $("#pic_alien").html("<center><img src='images/alien2.png' height='170' width='250'></center>");
     
     setTimeout(function(){
                          
     var MySound2 = $('#sound_right')[0];
-    MySound2.setAttribute('src', '/sounds/'+current_sound_r);
+    MySound2.setAttribute('src', 'sounds/'+current_sound_r);
     MySound2.play();
                           
     }, 500);   
@@ -256,16 +261,25 @@ var experiment = {
     $('#sound_left').on('playing', function() {
     
     $("#word_left").css({"background-color": "#81F781"});
+        
+    $("#pic_alien").html("<center><img src='images/alien1.png' height='170' width='250'></center>");
+        
     });
       
     $('#sound_right').on('playing', function() {
     
     $("#word_right").css({"background-color": "#81F781"});
+        
+    $("#pic_alien").html("<center><img src='images/alien1.png' height='170' width='250'></center>");
+        
     });
 
     $('#sound_right').on('ended', function() {
     
     $("#word_right").css({"background-color": "white"});
+        
+    $("#pic_alien").html("<center><img src='images/alien2.png' height='170' width='250'></center>");
+        
     });
     
     

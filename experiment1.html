@@ -17,13 +17,10 @@
   </div>
 		<p id='logo-text'>Stanford Language and Cognition Lab</p>
 	<p class="block-text">
-        This is an experiment that tests aspects of human word learning. 
-        You will be shown pairs of objects and hear their names. You should decide if the pair reprsents one word (or a variation of the same word), in which case you should press <span class="same-key">{{}}</span>,  or if the pair represents two words, <span class="different-key">{{}}</span> (detailed instructions will be provide as the experiment develops). <br><br>
-		
-        <b>The experiment requires that you listen carefully. Please make sure that no music is played in the background. Put your headphones on or make sure you are in a quiet environment.</b>
+        This is an experiment that tests aspects of human word learning.  The experiment requires that you listen carefully. Please make sure that no music is played in the background. Put your headphones on or make sure you are in a quiet environment.
         </p>
         
-        <p class="block-text">DO ONLY ONE "CHILD DEVELOPMENT SURVEY" HIT. IF YOU DO MULTIPLE HITS OF THIS TYPE, YOU WILL NOT BE PAID!
+        <p class="block-text">DO ONLY ONE "WORD LEARNING EXPERIMENT" HIT. IF YOU DO MULTIPLE HITS OF THIS TYPE, YOU WILL NOT BE PAID!
     </p>
         
 
@@ -36,9 +33,15 @@
   <p class="block-text" id="legal">By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact us at <a href="mailto://languagecoglab@gmail.com.">languagecoglab@gmail.com</a>. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you. Note however that we have recently been made aware that your public Amazon.com profile can be accessed via your worker ID if you do not choose to opt out. If you would like to opt out of this feature, you may follow instructions available <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=16465241">here</a>.</p>
 </div>
 <!-- The "stage" slide - where the bulk of the experiment will be displayed. Again, note the use of <code>{{}}</code>. -->
-<div class="slide" id="stage">
+<div class="slide" id="stage" style="display:table;">
+    
     <audio id='sound_left' autoplay='autoplay'></audio>
     <audio id='sound_right' autoplay='autoplay'></audio>
+    
+    <table id="hello" width="80%" border="0" cellspacing="20" cellpadding="0" align="center">
+        <tr>
+        <td valign="top">
+               
     <div id="word_left">
         <p id="pic_left">{{}}</p>
         
@@ -47,11 +50,25 @@
         <p id="pic_right">{{}}</p>
         
     </div>
-    <div id="intruct_text">
-        <p class="block-text"> Press <span class="same-key">{{}}</span> if you think the pair of objects represent one word, and
-		<span class="different-key">{{}}</span> if you think the objects represent two words. </p>
-    </div>
     
+    </td>
+</tr>
+        <tr>
+<td valign="bottom">
+    
+        <div id="alien">
+        <p id="pic_alien">{{}}</p>
+     </div> 
+    </td>
+            </tr>
+        <tr>
+         <td>
+             <div id="intruct_text">
+                 <p class="question-text">Press <span class="same-key">{{}}</span> if the same word, and <span class="different-key">{{}}</span> if  different words </p>
+    </div>
+             </td>
+</tr>
+</table>
 	
 </div>
     
@@ -61,9 +78,16 @@
 
   <br>
 
-  <p class="block-text"> The goal of this part of the experiment is to get you familiar with the task. In each trial, you will see two objects and simultaneously hear their real names in Engish. You should press <span class="same-key">{{}}</span> if you think the pair  represent one word, and <span class="different-key">{{}}</span> if you think the objects represent two words. </p>
+    <p class="block-text"> This part of the experiment serves as a training for the task that you will perform later. </p> <p class="block-text"> An alien will be teaching an other alien the names of some objects from the planet Earth. In each trial, the alien on the left points successively to two objects (pointing will be signaled by a green light around the object), and will say their names. </p>  <p class="block-text"> He can describe these objects by different words (e.g., the word "banana" describes a banana and the word "sandwich" describes a sandwich), or by the same word (e.g., the word ''food'' describes both a banana and a sandwich).</p> <p class="block-text"> In each trial, you should press <span class="same-key">{{}}</span> if you think that the objects are being described by the <b>same</b> word, and press <span class="different-key">{{}}</span> if you think the objects are being described by 2 <b>different</b> words. </p>
 
-  <table align="center"><tr>
+  <table align="center">
+      <tr>
+      
+      <td>
+          <p><center><img src='images/alien1.png' height='120' width='200'></center> </p>
+      </td>
+          </tr>
+      <tr>
     <td align="center">
       <button type="button" id="nextButton_choice" onClick="this.blur(); experiment.next()"> Continue</button>
     </td> 
@@ -81,17 +105,24 @@
 
   <br>
 
-    <p class="block-text">You are now about to start the real experiment. As before, you will be shown two objects and hear their names. <br><br> IMPORTANT: the names you will hear are no more real english words, but artificial words. They will sound like either <b>ABA</b> or <b>ADA</b>.   As before, you should press <span class="same-key">{{}}</span> if you think the pair represents one word (that is, 2 variations of <b>ABA</b>s or 2 variations of <b>ADA</b>s), and <span class="different-key">{{}}</span> if you think the items represent two words (1 <b>ABA</b> and 1 <b>APA</b>).
-    <!-- this does not account for homophony -->
-        
-    Some trials are purposefully made ambiguous. If you hesitate, go ahead and give the answer that you think is more plausible!<br><br>
-        
-    Note that each trial (i.e., naming of a pair of objects) is independent. Therefore, your answer on one trial is not necessarily related to you other answers  on subsequent trials.
-        
-        
-    </p>
+    <p class="block-text"> Now you will start the real task. </p>  
 
-  <table align="center"><tr>
+    <p class="block-text"> Contrary to the training, the alien will NOT be speaking in English, but in an alien language. This language contains only two words: "ABA" and "ADA" </p>
+        
+    <p class="block-text">  The alien can describe the two objects by different words (ABA - ADA) or by a same word (ABA - ABA). <b>What makes the task difficult for the other alien, however, is that two instances of ABA can be pronnced slightly differently, and can sometimes be difficult to distinguish from the two words ABA-ADA. </b> </p>
+    
+    <p class="block-text"> In each trial, you should press <span class="same-key">{{}}</span> if you think that the objects are being described by the <b>same</b> word (ABA - ABA), and press <span class="different-key">{{}}</span> if you think the objects are being described by 2 <b>different</b> words (ABA - ADA). </p>
+    
+    <p class="block-text"> Note that each trial is independent. Therefore, your answer on one trial is not necessarily related to you other answers on subsequent trials.</p>
+
+  <table align="center">
+      <tr>
+      
+      <td>
+          <p><center><img src='images/alien1.png' height='120' width='200'></center> </p>
+      </td>
+          </tr>
+      <tr>
     <td align="center">
       <button type="button" id="nextButton_choice" onClick="this.blur(); experiment.next()"> Continue</button>
     </td> 

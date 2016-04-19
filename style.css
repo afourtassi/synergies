@@ -79,6 +79,12 @@ button[disabled] {
   margin-bottom: 1em;
 }
 
+.question-text {
+  width: 500px;
+ text-align: center;
+  margin: 0 auto;
+}
+
 #legal {
   margin: 0 auto;
   margin-top: 1.5em;
@@ -94,17 +100,19 @@ button[disabled] {
   margin-top: 100px;
 }
 
+
+
 #word_left {
-padding: 60px;
+padding: 40px;
 float :left;
 }
 
 #word_right {
-padding: 60px;
+padding: 40px;
 float : right;
 }
 
 #intruct_text {
     clear: both;
-    padding: 50px;
+    padding: 10px;
 }
