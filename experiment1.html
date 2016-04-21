@@ -5,7 +5,7 @@
 	<!-- Include the [jQuery library](http://jquery.com/), which helps you manipulate HTML elements from JS. -->
 	<script src="jquery-1.11.2.min.js"></script>
 	<!-- [mmturkey]: http://github.com/longouyang/mmturkey -->
-	<script src="mmturkey.js"></script>
+	<script src="mmturkey-0.6.js"></script>
 	<link rel="stylesheet" href="style.css" />
 
 </head>
@@ -20,46 +20,46 @@
 	<p class="block-text">
         This is an experiment that tests aspects of human word learning. The experiment involves audio sequences. Please make sure that no music is played in the background. Put your headphones on or make sure you are in a quiet environment.
         </p>
-        
+
         <p class="block-text">DO ONLY ONE "WORD LEARNING EXPERIMENT" HIT. IF YOU DO MULTIPLE HITS OF THIS TYPE, YOU WILL NOT BE PAID!
     </p>
-        
+
 
 	<!-- Button to start the experiment. <code>this.blur()</code> removes the focus from the button, if the user pressed the button by using the keyboard, rather than the mouse. -->
 	<button type="button" onclick="this.blur(); experiment.next()">Start</button>
 	<!-- Legal blurb that we're required to show. -->
-    
+
      <p class="block-text"><br> <b> Note: you won't be able to preview this HIT before accepting it because it's so short. </b></p>
 
   <p class="block-text" id="legal">By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact us at <a href="mailto://languagecoglab@gmail.com.">languagecoglab@gmail.com</a>. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you. Note however that we have recently been made aware that your public Amazon.com profile can be accessed via your worker ID if you do not choose to opt out. If you would like to opt out of this feature, you may follow instructions available <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=16465241">here</a>.</p>
 </div>
 <!-- The "stage" slide - where the bulk of the experiment will be displayed. Again, note the use of <code>{{}}</code>. -->
 <div class="slide" id="stage" style="display:table;">
-    
+
     <audio id='sound_left' autoplay='autoplay'></audio>
     <audio id='sound_right' autoplay='autoplay'></audio>
-    
+
     <table id="hello" width="80%" border="0" cellspacing="20" cellpadding="0" align="center">
         <tr>
         <td valign="top">
-               
+
     <div id="word_left">
         <p id="pic_left">{{}}</p>
-        
+
     </div>
     <div id="word_right">
         <p id="pic_right">{{}}</p>
-        
+
     </div>
-    
+
     </td>
 </tr>
         <tr>
 <td valign="bottom">
-    
+
         <div id="alien">
             <p id="pic_alien" align="center"></p>
-     </div> 
+     </div>
     </td>
             </tr>
         <tr>
@@ -70,11 +70,11 @@
              </td>
 </tr>
 </table>
-	
+
 </div>
-    
+
 <!-- Instruction for training. -->
-    
+
 <div class="slide" id="pre_instruction">
 
   <br>
@@ -83,7 +83,7 @@
 
   <table align="center">
       <tr>
-      
+
       <td>
           <p><center><img src='images/alien1.png' height='120' width='200'></center> </p>
       </td>
@@ -91,36 +91,36 @@
       <tr>
     <td align="center">
       <button type="button" id="nextButton_choice" onClick="this.blur(); experiment.next()"> Continue</button>
-    </td> 
+    </td>
     <tr><td align="center">
 
-    </td></tr> 
+    </td></tr>
 
   </table>
 
 </div>
 
-    
+
 <!-- Instructions for real -->
 <div class="slide" id="real_instruction">
 
   <br>
 
-    <p class="block-text"> Now you will start the real task. Please make sure that you read and understand the following instructions: </p>  
+    <p class="block-text"> Now you will start the real task. Please make sure that you read and understand the following instructions: </p>
 
     <p class="block-text"> Contrary to the training, the alien will NOT be speaking in English, but in an alien language. This language contains only two words: "ABA" and "ADA". </p>
-        
+
     <p class="block-text">  As before, the alien will describe two new objects either by different words (in this case by ABA - ADA) or by a same word (ABA - ABA).</p>
-    
+
     <p class="block-text"> A difficulty for the other alien, however, is that two instances of ABA can be pronounced slightly differently, and can sometimes be hard to distinguish from the two words ABA-ADA. You should help the other alien in this task based on both the sounds and the objects being descibed.</p>
-        
+
     <p class="block-text"> In each trial, you should press <span class="same-key">{{}}</span> if you think that the objects are being described by the <b>same</b> word (ABA - ABA) even when they are  pronounced slightly differently, and press <span class="different-key">{{}}</span> if you think the objects are being described by 2 <b>different</b> words (ABA - ADA). </p>
-    
+
     <p class="block-text"> Each trial is different. Your answers for one trial do not need to be related to your other answers on subsequent trials.</p>
 
   <table align="center">
       <tr>
-      
+
       <td>
           <p><center><img src='images/alien1.png' height='120' width='200'></center> </p>
       </td>
@@ -128,14 +128,14 @@
       <tr>
     <td align="center">
       <button type="button" id="nextButton_choice" onClick="this.blur(); experiment.next()"> Continue</button>
-    </td> 
+    </td>
     <tr><td align="center">
 
-    </td></tr> 
+    </td></tr>
 
   </table>
 
-</div>    
+</div>
 <!-- The finish slide. -->
 <div class="slide" id="finished">
 	You're finished - thanks for participating! Submitting to Mechanical Turk...
