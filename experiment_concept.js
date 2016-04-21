@@ -1,6 +1,13 @@
 
 // ## Helper functions
 
+function preload(arrayOfImages) {
+    $(arrayOfImages).each(function(){
+        $('<img/>')[0].src = this;
+        
+    });
+}
+
 // Shows slides. We're using jQuery here - the **$** is the jQuery selector function, which takes as input either a DOM element or a CSS selector string.
 function showSlide(id) {
   // Hide all slides
@@ -161,6 +168,25 @@ for (i=0; i < total_real; i++){
     myTrials.push(myTrial);
 }
 
+//Preload the pictures
+preload([
+    'imgages/alien1.jpg',
+    'imgages/alien2.jpg',
+    'imgages/apple.jpg',
+    'imgages/apple2.jpg',
+    'imgages/bird.jpg',
+    'imgages/buffle.jpg',
+    'imgages/car.jpg',
+    'imgages/cow.jpg',
+    'imgages/deer.jpg',
+    'imgages/grey.jpg',
+    'imgages/phon.jpg',
+    'imgages/lion.jpg',
+    'imgages/sandwich.jpg',
+    'imgages/stanford.jpg'
+    
+    
+]);
 
 // Show the instructions slide -- this is what we want subjects to see first.
 
@@ -181,7 +207,8 @@ var experiment = {
     sou_r: [],  
     sou_dist: [],  
     answer:[],
-    rt:[]  
+    rt:[],
+    condition:[]
   },
   // Parameters for this sequence.
   trials: myTrials,
@@ -315,7 +342,7 @@ var experiment = {
         
         experiment.data.rt.push(endTime - startTime);
         
-        
+        experiment.data.condition.push("concept");
         
         // Temporarily clear the trial.
         //$("#pic_left").html("");
