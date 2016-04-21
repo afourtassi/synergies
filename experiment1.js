@@ -52,24 +52,31 @@ var $alien = new Array();
 $alien.push($('<img>').attr('src','images/alien2.png'));
 $alien.push($('<img>').attr('src','images/alien1.png'));
 
-$alien[0].height(170);
-$alien[0].width(250);
-
-$alien[1].height(170);
-$alien[1].width(250);
+$alien[0].height(170).width(250);
+$alien[1].height(170).width(250);
 
 
 var $concept_pre_0 = new Array();
-$concept_pre_0.push($('<img>').attr('src','images/apple.jpg'));
-$concept_pre_0.push($('<img>').attr('src','images/apple.jpg'));
-$concept_pre_0.push($('<img>').attr('src','images/apple.jpg'));
-$concept_pre_0.push($('<img>').attr('src','images/apple.jpg'));
 
+for (i=0; i < 4; i++){
+$concept_pre_0.push($('<img>').attr('src','images/apple.jpg'));
+}
+
+for (i=0; i < 4; i++){
+$concept_pre_0[i].height(170).width(250);
+
+}
 var $concept_pre_1 = new Array();
 $concept_pre_1.push($('<img>').attr('src','images/phon.jpg'));
 $concept_pre_1.push($('<img>').attr('src','images/lion.jpg'));
 $concept_pre_1.push($('<img>').attr('src','images/apple2.jpg'));
 $concept_pre_1.push($('<img>').attr('src','images/sandwich.jpg'));
+
+for (i=0; i < 4; i++){
+$concept_pre_1[i].height(170).width(250);
+
+}
+
 
 sound_pre_0=['apple.wav','apple.wav','apple.wav','food.wav' ],
   
@@ -85,12 +92,17 @@ var SoundToConcept_Map_pre=[0,1,2,3];
 //Stimuli (real)
 
 var $concept_0 = new $('<img>').attr('src','images/cow.jpg');
+$concept_0.height(170).width(250);
 
 var $concept_1 = new Array();
 $concept_1.push($('<img>').attr('src','images/buffle.jpg'));
 $concept_1.push($('<img>').attr('src','images/deer.jpg'));
 $concept_1.push($('<img>').attr('src','images/bird.jpg'));
 $concept_1.push($('<img>').attr('src','images/car.jpg'));
+
+for (i=0; i < 4; i++){
+$concept_1[i].height(170).width(250);
+}
 
 sound_0= 'aba01.wav',
 sound_1=['aba03.wav','aba05.wav','aba07.wav','aba09.wav'];
@@ -263,12 +275,8 @@ var experiment = {
     {
         
         var $current_concept_l= current_trial.concept_l;
-        $current_concept_l.height(170);
-        $current_concept_l.width(250);
       
         var $current_concept_r= current_trial.concept_r;
-        $current_concept_r.height(170);
-        $current_concept_r.width(250);
       
         var current_sound_l= current_trial.sound_l;
       
