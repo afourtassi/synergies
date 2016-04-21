@@ -3,12 +3,6 @@
 
 // Shows slides. We're using jQuery here - the **$** is the jQuery selector function, which takes as input either a DOM element or a CSS selector string.
 
-function preload(arrayOfImages) {
-    $(arrayOfImages).each(function(){
-        $('<img/>')[0].src = this;
-        
-    });
-}
 
 function showSlide(id) {
   // Hide all slides
@@ -41,12 +35,45 @@ function randomElement(array) {
 // three types of trials:
 // 1) sound and picture 2) sound with hidden pictures 3) beep with image 4) traing trials with known sounds and pictures
 
-//Stimuli (training)
+//Preload the pictures
 
-var concept_pre_0=['apple.jpg', 'apple.jpg', 'apple.jpg', 'apple.jpg']
-    sound_pre_0=['apple.wav','apple.wav','apple.wav','food.wav' ],
-    concept_pre_1=['phon.jpg','lion.jpg','apple2.jpg', 'sandwich.jpg'],
-    sound_pre_1 = ['phone.wav', 'lion.wav', 'apple.wav','food.wav'];
+
+//var count = myImages.length;
+
+//var $MyPics = new Array();
+
+//for (var i=0; i<count-1;i++){
+//    $MyPics.push($('<img>').attr('src', myImages[i]));
+//}
+
+//Preloading the stimuli (training)
+
+var $alien = new Array();
+$alien.push($('<img>').attr('src','images/alien2.png'));
+$alien.push($('<img>').attr('src','images/alien1.png'));
+
+$alien[0].height(170);
+$alien[0].width(250);
+
+$alien[1].height(170);
+$alien[1].width(250);
+
+
+var $concept_pre_0 = new Array();
+$concept_pre_0.push($('<img>').attr('src','images/apple.jpg'));
+$concept_pre_0.push($('<img>').attr('src','images/apple.jpg'));
+$concept_pre_0.push($('<img>').attr('src','images/apple.jpg'));
+$concept_pre_0.push($('<img>').attr('src','images/apple.jpg'));
+
+var $concept_pre_1 = new Array();
+$concept_pre_1.push($('<img>').attr('src','images/phon.jpg'));
+$concept_pre_1.push($('<img>').attr('src','images/lion.jpg'));
+$concept_pre_1.push($('<img>').attr('src','images/apple2.jpg'));
+$concept_pre_1.push($('<img>').attr('src','images/sandwich.jpg'));
+
+sound_pre_0=['apple.wav','apple.wav','apple.wav','food.wav' ],
+  
+sound_pre_1 = ['phone.wav', 'lion.wav', 'apple.wav','food.wav'];
   
     
 //shuffle order of exposure 
@@ -56,10 +83,17 @@ var Trials_pre=shuffleArray([0,1,2,3]);
 var SoundToConcept_Map_pre=[0,1,2,3]; 
 
 //Stimuli (real)
-var concept_0= 'cow.jpg',
-    sound_0= 'aba01.wav',
-    concept_1= ['buffle.jpg','deer.jpg','bird.jpg','car.jpg'],
-    sound_1=['aba03.wav','aba05.wav','aba07.wav','aba09.wav'];
+
+var $concept_0 = new $('<img>').attr('src','images/cow.jpg');
+
+var $concept_1 = new Array();
+$concept_1.push($('<img>').attr('src','images/buffle.jpg'));
+$concept_1.push($('<img>').attr('src','images/deer.jpg'));
+$concept_1.push($('<img>').attr('src','images/bird.jpg'));
+$concept_1.push($('<img>').attr('src','images/car.jpg'));
+
+sound_0= 'aba01.wav',
+sound_1=['aba03.wav','aba05.wav','aba07.wav','aba09.wav'];
 
 //shuffle order of exposure
 var Trials=shuffleArray([0,1,2,3]);
@@ -130,8 +164,8 @@ for (i=0; i < total_pre; i++){
     myTrial = {
         trial_number: 0,
         trial_type: "pre",
-        concept_l:concept_pre_0[Trials_pre[i]],
-        concept_r:concept_pre_1[Trials_pre[i]],
+        concept_l:$concept_pre_0[Trials_pre[i]],
+        concept_r:$concept_pre_1[Trials_pre[i]],
         concept_dist:'',
         sound_l:sound_pre_0[SoundToConcept_Map_pre[Trials_pre[i]]],
         sound_r:sound_pre_1[SoundToConcept_Map_pre[Trials_pre[i]]],
@@ -158,8 +192,8 @@ for (i=0; i < total_real; i++){
     myTrial = {
         trial_number: i+1,
         trial_type: "real",
-        concept_l:concept_0,
-        concept_r:concept_1[Trials[i]],
+        concept_l:$concept_0,
+        concept_r:$concept_1[Trials[i]],
         concept_dist:Trials[i],
         sound_l:sound_0,
         sound_r:sound_1[SoundToConcept_Map[Trials[i]]],
@@ -170,25 +204,6 @@ for (i=0; i < total_real; i++){
 }
 
 
-//Preload the pictures
-preload([
-    'imgages/alien1.jpg',
-    'imgages/alien2.jpg',
-    'imgages/apple.jpg',
-    'imgages/apple2.jpg',
-    'imgages/bird.jpg',
-    'imgages/buffle.jpg',
-    'imgages/car.jpg',
-    'imgages/cow.jpg',
-    'imgages/deer.jpg',
-    'imgages/grey.jpg',
-    'imgages/phon.jpg',
-    'imgages/lion.jpg',
-    'imgages/sandwich.jpg',
-    'imgages/stanford.jpg'
-    
-    
-]);
 
 // Show the instructions slide -- this is what we want subjects to see first.
 
@@ -247,9 +262,13 @@ var experiment = {
     if (current_trial.trial_type == "pre" || current_trial.trial_type == "real") 
     {
         
-        var current_concept_l= current_trial.concept_l;
+        var $current_concept_l= current_trial.concept_l;
+        $current_concept_l.height(170);
+        $current_concept_l.width(250);
       
-        var current_concept_r= current_trial.concept_r;
+        var $current_concept_r= current_trial.concept_r;
+        $current_concept_r.height(170);
+        $current_concept_r.width(250);
       
         var current_sound_l= current_trial.sound_l;
       
@@ -260,11 +279,13 @@ var experiment = {
       
     // Display the pictures.
     
-    $("#pic_alien").html("<center><img src='images/alien2.png' height='170' width='250'></center>");
+    //$("#pic_alien").html($MyPics[1]); // alien 1
         
-    $("#pic_left").html("<center><img src='images/"+current_concept_l+"' height='170' width='250'></center>");
+    $("#pic_alien").html($alien[0]);
+        
+    $("#pic_left").html($current_concept_l);
       
-    $("#pic_right").html("<center><img src='images/"+current_concept_r+"' height='170' width='250'></center>");
+    $("#pic_right").html($current_concept_r);
       
     //Play the sound for the left word then the sound for the right word
   
@@ -276,7 +297,7 @@ var experiment = {
         
     $("#word_left").css({"background-color": "white"});
         
-    $("#pic_alien").html("<center><img src='images/alien2.png' height='170' width='250'></center>");
+    $("#pic_alien").html($alien[0]);
     
     setTimeout(function(){
                          
@@ -291,7 +312,7 @@ var experiment = {
     
     $("#word_left").css({"background-color": "#81F781"});
         
-    $("#pic_alien").html("<center><img src='images/alien1.png' height='170' width='250'></center>");
+    $("#pic_alien").html($alien[1]);
         
     });
       
@@ -299,7 +320,7 @@ var experiment = {
     
     $("#word_right").css({"background-color": "#81F781"});
         
-    $("#pic_alien").html("<center><img src='images/alien1.png' height='170' width='250'></center>");
+    $("#pic_alien").html($alien[1]);
         
     });
 
@@ -307,7 +328,7 @@ var experiment = {
     
     $("#word_right").css({"background-color": "white"});
         
-    $("#pic_alien").html("<center><img src='images/alien2.png' height='170' width='250'></center>");
+    $("#pic_alien").html($alien[0]);
         
     });
     
