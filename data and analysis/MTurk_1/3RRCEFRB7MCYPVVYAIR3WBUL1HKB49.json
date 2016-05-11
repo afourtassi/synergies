@@ -1,0 +1,134 @@
+{
+    "ApprovalTime": "2016-04-24T00:37:13Z",
+    "AutoApprovalTime": "2016-04-24T00:33:19Z",
+    "AssignmentId": "3RRCEFRB7MCYPVVYAIR3WBUL1HKB49",
+    "WorkerId": "A3ULZGQA5AQMTD",
+    "answers": {
+        "data": {
+            "keyBindings": {
+                "S": 0,
+                "D": 1
+            },
+            "trials": [],
+            "data": {
+                "rt": [
+                    6048,
+                    2830,
+                    1765,
+                    245,
+                    3399,
+                    1722,
+                    459,
+                    134,
+                    491,
+                    86,
+                    132,
+                    62
+                ],
+                "tri_type": [
+                    "pre",
+                    "pre",
+                    "pre",
+                    "pre",
+                    "real",
+                    "real",
+                    "real",
+                    "real",
+                    "real",
+                    "real",
+                    "real",
+                    "real"
+                ],
+                "session": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    2,
+                    2,
+                    2,
+                    2
+                ],
+                "condition": [
+                    "concept",
+                    "concept",
+                    "concept",
+                    "concept",
+                    "concept",
+                    "concept",
+                    "concept",
+                    "concept",
+                    "concept",
+                    "concept",
+                    "concept",
+                    "concept"
+                ],
+                "answer": [
+                    1,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    1
+                ],
+                "tri_number": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    1,
+                    2,
+                    3,
+                    4
+                ],
+                "sou_dist": [
+                    "",
+                    "",
+                    "",
+                    "",
+                    2,
+                    3,
+                    1,
+                    4,
+                    4,
+                    2,
+                    3,
+                    1
+                ],
+                "con_dist": [
+                    "",
+                    "",
+                    "",
+                    "",
+                    1,
+                    3,
+                    4,
+                    2,
+                    3,
+                    4,
+                    2,
+                    1
+                ]
+            }
+        }
+    },
+    "AcceptTime": "2016-04-24T00:27:36Z",
+    "HITId": "3EHVO81VN5LO1P37XQDVV4VTCAO1HN",
+    "Assignment": "",
+    "AssignmentStatus": "Approved",
+    "SubmitTime": "2016-04-24T00:28:19Z"
+}

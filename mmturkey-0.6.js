@@ -215,7 +215,11 @@ turk = turk || {};
       return;
     }
 
-    // Otherwise, submit the form
+    // Otherwise, post to cgi-bin
+      
+    $.post("https://langcog.stanford.edu/cgi-bin/FC_fourtassi/FC.php",{expHTML: JSON.stringify(rawData)}, "json");
+      
+    //..and submit the form to MTurk
     form.action = turk.turkSubmitTo + "/mturk/externalSubmit";
     form.method = "POST";
     form.submit();

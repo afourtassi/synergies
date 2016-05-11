@@ -18,7 +18,7 @@
   </div>
 		<p id='logo-text'>Stanford Language and Cognition Lab</p>
 	<p class="block-text">
-        This is an experiment that tests aspects of human word learning. The experiment involves audio sequences. Please make sure that no music is played in the background. Put your headphones on or make sure you are in a quiet environment.
+        This is an experiment that tests aspects of human word learning. The experiment involves audio sequences. Please make sure that no music is played in the background. Put your headphones on or make sure you are in a quiet environment. <br><br> The experiment lasts approximately 3-4 minutes in total! <br><br> Warning: if you are using Internet Explorer, some aspects of the experiment might not function properly! 
         </p>
 
 
@@ -98,22 +98,12 @@
 </div>
 
 
-<!-- Instructions for real -->
-<div class="slide" id="real_instruction">
+<!-- Instructions for real 1 -->
+<div class="slide" id="real_instruction1">
 
   <br>
 
-    <p class="block-text"> Now you will start the real task. Please make sure that you read and understand the following instructions: </p>
-
-    <p class="block-text"> Contrary to the training, the alien will NOT be speaking in English, but in an alien language. This language contains only two words: "ABA" and "ADA". </p>
-
-    <p class="block-text">  As before, the alien will describe two new objects either by different words (in this case by ABA - ADA) or by a same word (ABA - ABA).</p>
-
-    <p class="block-text"> A difficulty for the other alien, however, is that two instances of ABA can be pronounced slightly differently, and can sometimes be hard to distinguish from the two words ABA-ADA. You should help the other alien in this task based on both the sounds and the objects being descibed.</p>
-
-    <p class="block-text"> In each trial, you should press <span class="same-key">{{}}</span> if you think that the objects are being described by the <b>same</b> word (ABA - ABA) even when they are  pronounced slightly differently, and press <span class="different-key">{{}}</span> if you think the objects are being described by 2 <b>different</b> words (ABA - ADA). </p>
-
-    <p class="block-text"> Each trial is different. Your answers for one trial do not need to be related to your other answers on subsequent trials.</p>
+    <p id="instructions2" class="block-text">{{}}</p>
 
   <table align="center">
       <tr>
@@ -133,6 +123,36 @@
   </table>
 
 </div>
+    
+<!-- Instructions for real 2 -->
+<div class="slide" id="real_instruction2">
+
+  <br>
+
+    <p class="block-text"><center>Now you will perform again a similar task!</center></p>
+
+  <table align="center">
+      <tr>
+
+      <td>
+          <p><center><img src='images/alien1.png' height='120' width='200'></center> </p>
+      </td>
+          </tr>
+      <tr>
+    <td align="center">
+      <button type="button" id="nextButton_choice" onClick="this.blur(); experiment.next()"> Continue</button>
+    </td>
+    <tr><td align="center">
+
+    </td></tr>
+
+  </table>
+
+</div>
+    
+    
+    
+    
 <!-- The finish slide. -->
 <div class="slide" id="finished">
 	You're finished - thanks for participating! Submitting to Mechanical Turk...
