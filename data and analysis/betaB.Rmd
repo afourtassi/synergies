@@ -1,0 +1,123 @@
+---
+title: "Synergies in Learning Form and Meaning"
+author: "Fourtassi & Frank"
+date: "May 4, 2016"
+output:
+  html_document:
+    number_sections: yes
+    toc: yes
+---
+
+Libraries.
+
+```{r}
+library(readr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(langcog)
+theme_set(theme_bw())
+```
+
+Data. 
+
+```{r}
+d <- read_delim("data_expt2.txt", delim = " ") %>%
+  filter(type == "real")
+```
+
+
+# beta binomials
+
+```{r}
+alpha = 5
+beta = 5
+
+provis= data.frame(concept_dist=c(1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4), sound_dist=c(1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4))
+
+sounds <- d %>%
+  filter(condition == "sound") %>%
+  group_by(condition, sound_dist) %>%
+  summarise(a = sum(answer==0) + alpha, 
+            b = sum(answer==1) + beta)
+sounds <- provis %>%
+  left_join(sounds)
+
+concepts <- d %>%
+  filter(condition == "concept") %>%
+  group_by(condition, concept_dist) %>%
+  summarise(a = sum(answer==0) + alpha, 
+            b = sum(answer==1) + beta)
+concepts <- provis %>%
+  left_join(concepts)
+
+joint <- d %>%
+  filter(condition == "joint") %>%
+  group_by(condition, concept_dist, sound_dist) %>%
+  summarise(a = sum(answer==0) + alpha, 
+            b = sum(answer==1) + beta)
+
+all <- bind_rows(sounds,concepts,joint)
+
+comb1 <- all %>%
+  group_by(sound_dist, concept_dist) %>%
+  mutate(a = a[condition == "sound"] + a[condition == "concept"],
+         b = b[condition == "sound"] + b[condition == "concept"]) %>%
+  filter(condition=="sound") %>%
+  mutate(condition="comb1")
+
+comb2 <- all %>%
+  group_by(sound_dist, concept_dist) %>%
+  mutate(a = a[condition == "sound"]*2 + a[condition == "concept"],
+         b = b[condition == "sound"]*2 + b[condition == "concept"]) %>%
+  filter(condition=="sound") %>%
+  mutate(condition="comb2")
+
+all <- bind_rows(all,comb1,comb2)
+
+betas <- all %>%
+  rowwise %>%
+  do(data.frame(condition = .$condition, 
+                sound_dist = .$sound_dist, 
+                concept_dist = .$concept_dist, 
+                a = .$a, 
+                b = .$b,
+                mean=.$a/(.$b+.$a),
+                x = seq(0,1,.01),
+                y = dbeta(seq(0,1,.01), 
+                          shape1 = .$a, 
+                          shape2 = .$b),
+                model = FALSE))
+```
+
+Visualize Data by condition 
+
+```{r}
+ggplot(betas, aes(x = x, y = y, col = condition)) + geom_line()+ 
+  facet_grid(sound_dist ~ concept_dist) 
+```
+
+Predictions of the 3 models:
+
+```{r}
+final <- betas %>%
+  group_by(condition, sound_dist, concept_dist) %>%
+  summarise(mean = min(mean)) %>%
+  spread(condition, mean)
+
+ggplot(final, aes(x = sound, y = joint)) + geom_point()+
+geom_abline(slope = 1, lty = 2)
+
+cor(select(final,joint,sound))
+
+ggplot(final, aes(x = comb1, y = joint)) + geom_point()+
+geom_abline(slope = 1, lty = 2)
+
+cor(select(final,joint,comb1))
+
+ggplot(final, aes(x = comb2, y = joint)) + geom_point()+
+geom_abline(slope = 1, lty = 2)
+
+cor(select(final,joint,comb2))
+
+```
