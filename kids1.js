@@ -106,27 +106,33 @@ var myInstruction= "Now";
   
       
 var ConStim_left=['cow','cow','cow','cow',
+                  'cow','cow','cow','cow',
               'grey','grey','grey','grey',
              'cow','cow','cow','cow'];
 
 var ConStim_right=['buffle','deer','bird', 'car',
+                   'buffle','deer','bird', 'car',
               'grey','grey','grey','grey',
              'buffle','deer','bird', 'car'];
 
 var SounStim_left=['aba01','aba01','aba01','aba01',
+                   'aba01','aba01','aba01','aba01',
               'aba01','aba01','aba01','aba01',
              'beep','beep','beep','beep'];
 
 var SounStim_right=['aba03','aba05','aba07','aba09',
+                    'aba03','aba05','aba07','aba09',
               'aba03','aba05','aba07','aba09',
              'beep','beep','beep','beep'];
 
 var condition=['joint','joint','joint','joint',
+               'joint','joint','joint','joint',
               'sound','sound','sound','sound',
              'concept','concept','concept','concept'];
 
 
-var SoundToConcept_joint=subJoint[sub],
+var SoundToConcept_joint1=subJoint[sub],
+    SoundToConcept_joint2=subJoint[sub],
     SoundToConcept_sound=shuffleArray([0,1,2,3]),
     SoundToConcept_pic=shuffleArray([0,1,2,3]); 
 
@@ -260,7 +266,8 @@ $sound_1.push($('<audio>').attr('src','sounds/'+SounStim_right[i]+'.mp3').attr("
 
 //shuffle order of exposure
 
-var Trials_joint=shuffleArray([0,1,2,3]),
+var Trials_joint1=shuffleArray([0,1,2,3]),
+    Trials_joint2=shuffleArray([0,1,2,3]),
     Trials_sound=shuffleArray([0,1,2,3]),
     Trials_pic=shuffleArray([0,1,2,3]);
 
@@ -271,7 +278,8 @@ var Trials_joint=shuffleArray([0,1,2,3]),
 
 var myTrials=[];
 var total_pre= Trials_pre.length;
-var total_joint= Trials_joint.length,
+var total_joint1= Trials_joint1.length,
+    total_joint2= Trials_joint2.length,
     total_sound= Trials_sound.length,
     total_pic= Trials_pic.length;
 //var totalTrials = totalPre + totalReal +2;
@@ -438,25 +446,61 @@ myTrials.push(myTrial={
         mycondition:''
         });
 
-//Trials joint
-for (i=0; i < total_joint; i++){
+//Trials joint 1
+for (i=0; i < total_joint1; i++){
     myTrial = {
         trial_number: i+1,
-        trial_order:Trials_joint[i]+1,
+        trial_order:Trials_joint1[i]+1,
         trial_type: "real",
         session:1,
-        concept_l:$concept_0[Trials_joint[i]],
-        concept_r:$concept_1[Trials_joint[i]],
-        concept_dist:Trials_joint[i]+1,
-        sound_l:$sound_0[SoundToConcept_joint[Trials_joint[i]]],
-        sound_r:$sound_1[SoundToConcept_joint[Trials_joint[i]]],
-        sound_dist: SoundToConcept_joint[Trials_joint[i]]+1,
+        concept_l:$concept_0[Trials_joint1[i]],
+        concept_r:$concept_1[Trials_joint1[i]],
+        concept_dist:Trials_joint1[i]+1,
+        sound_l:$sound_0[SoundToConcept_joint1[Trials_joint1[i]]],
+        sound_r:$sound_1[SoundToConcept_joint1[Trials_joint1[i]]],
+        sound_dist: SoundToConcept_joint1[Trials_joint1[i]]+1,
         different:'',
         mycondition:'joint'
     }
     
     myTrials.push(myTrial);
 }
+
+myTrials.push(myTrial={
+        trial_number: 0,
+        trial_order:'',
+        trial_type: "joint",
+        session:0,
+        concept_l:'',
+        concept_r:'',
+        concept_dist:'',
+        sound_l:'',
+        sound_r:'',
+        sound_dist: '',
+        different:'',
+        mycondition:''
+        });
+
+//Trials joint 2
+for (i=0; i < total_joint2; i++){
+    myTrial = {
+        trial_number: i+1,
+        trial_order:Trials_joint2[i]+1,
+        trial_type: "real",
+        session:2,
+        concept_l:$concept_0[4+Trials_joint2[i]],
+        concept_r:$concept_1[4+Trials_joint2[i]],
+        concept_dist:Trials_joint2[i]+1,
+        sound_l:$sound_0[4+SoundToConcept_joint2[Trials_joint2[i]]],
+        sound_r:$sound_1[4+SoundToConcept_joint2[Trials_joint2[i]]],
+        sound_dist: SoundToConcept_joint2[Trials_joint2[i]]+1,
+        different:'',
+        mycondition:'joint'
+    }
+    
+    myTrials.push(myTrial);
+}
+
 
 //Instructions real sound
 myTrials.push(myTrial={
@@ -481,11 +525,11 @@ for (i=0; i < total_sound; i++){
         trial_order:Trials_sound[i]+1,
         trial_type: "real",
         session:1,
-        concept_l:$concept_0[4+Trials_sound[i]],
-        concept_r:$concept_1[4+Trials_sound[i]],
+        concept_l:$concept_0[8+Trials_sound[i]],
+        concept_r:$concept_1[8+Trials_sound[i]],
         concept_dist:Trials_sound[i]+1,
-        sound_l:$sound_0[4+SoundToConcept_sound[Trials_sound[i]]],
-        sound_r:$sound_1[4+SoundToConcept_sound[Trials_sound[i]]],
+        sound_l:$sound_0[8+SoundToConcept_sound[Trials_sound[i]]],
+        sound_r:$sound_1[8+SoundToConcept_sound[Trials_sound[i]]],
         sound_dist: SoundToConcept_sound[Trials_sound[i]]+1,
         different:'',
         mycondition:'sound'
@@ -517,11 +561,11 @@ for (i=0; i < total_pic; i++){
         trial_order:Trials_pic[i]+1,
         trial_type: "real",
         session:1,
-        concept_l:$concept_0[8+Trials_pic[i]],
-        concept_r:$concept_1[8+Trials_pic[i]],
+        concept_l:$concept_0[12+Trials_pic[i]],
+        concept_r:$concept_1[12+Trials_pic[i]],
         concept_dist:Trials_pic[i]+1,
-        sound_l:$sound_0[8+SoundToConcept_pic[Trials_pic[i]]],
-        sound_r:$sound_1[8+SoundToConcept_pic[Trials_pic[i]]],
+        sound_l:$sound_0[12+SoundToConcept_pic[Trials_pic[i]]],
+        sound_r:$sound_1[12+SoundToConcept_pic[Trials_pic[i]]],
         sound_dist: SoundToConcept_pic[Trials_pic[i]]+1,
         different:'',
         mycondition:'concept'
@@ -544,41 +588,6 @@ myTrials.push(myTrial={
         different:'',
         mycondition:''
         });
-
-//Instructions real 2
-//myTrials.push(myTrial={
-//        trial_number: 0,
-//        trial_order:'',
-//        trial_type: "real_instruction2",
-//        session:0,
-//        concept_l:'',
-//        concept_r:'',
-//        concept_dist:'',
-//        sound_l:'',
-//        sound_r:'',
-//        sound_dist: '',
-//        different:''
-//        });
-
-//Real trials 2
-//for (i=0; i < total_real; i++){
-//    myTrial = {
-//        trial_number: i+1,
-//        trial_order:Trials2[i]+1,
-//        trial_type: "real",
-//        session:2,
-//        concept_l:$concept_0,
-//        concept_r:$concept_1[Trials2[i]],
-//        concept_dist:Trials2[i]+1,
-//        sound_l:$sound_0[SoundToConcept_Map2[Trials2[i]]],
-//        sound_r:$sound_1[SoundToConcept_Map2[Trials2[i]]],
-//        sound_dist: SoundToConcept_Map2[Trials2[i]]+1,
-//        different:''
-//    }
-    
-//    myTrials.push(myTrial);
-//}
-
 
 
 // Show the instructions slide -- this is what we want subjects to see first.
