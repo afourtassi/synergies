@@ -132,11 +132,11 @@ turk = turk || {};
       var strs = [];
       for(var key in obj) {
         if (obj.hasOwnProperty(key)) {
-          var str = htmlify(obj[key]);
+          var str = "<li>" + htmlify(key) + ": " + htmlify(obj[key]) + "</li>";
           strs.push(str);
         }
       }
-      return strs.join("");
+      return "{<ul>" + strs.join("") + "</ul>}";
     } else if (typeof obj == "string")  {
       return '"' + obj + '"';
     } else if (typeof obj == "undefined" ) {
@@ -202,28 +202,29 @@ turk = turk || {};
     // If there's no turk info
     if (!assignmentId || !turkSubmitTo) {
       // Emit the debug output and stop
-      var div = document.createElement('div');
-      div.style.fontFamily = '"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif';
-      div.style.fontSize = "14px";
-      div.style.cssFloat = "right";
-      div.style.padding = "1em";
-      div.style.backgroundColor = "#dfdfdf";
-      div.innerHTML = "<p><b>Thanks!</b></p>"
+      var div = document.createElement('div'),
+          style = div.style;
+      style.fontFamily = '"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif';
+      style.fontSize = "14px";
+      style.cssFloat = "right";
+      style.padding = "1em";
+      style.backgroundColor = "#dfdfdf";
+      div.innerHTML = "<p><b>Debug mode</b></p>Here is the data that would have been submitted to Turk: <ul>" + htmlify(rawData) + "</ul>";
+      div.className = "mmturkey-debug";
       document.body.appendChild(div);
-
-// htmlify(rawData)
-
-
-      $.post("https://langcog.stanford.edu/cgi-bin/FC_fourtassi/FC.php",{expHTML: JSON.stringify(rawData)}, "json");
-
       return;
+        
+    $.post("https://langcog.stanford.edu/cgi-bin/FC_fourtassi/FC.php",{expHTML: JSON.stringify(rawData)}, "json");
     }
 
+    // Otherwise, post to cgi-bin
+      
     $.post("https://langcog.stanford.edu/cgi-bin/FC_fourtassi/FC.php",{expHTML: JSON.stringify(rawData)}, "json");
-    // // Otherwise, submit the form
-    // form.action = "https://langcog.stanford.edu/cgi-bin/SC_noisy/parenting_proj.php";
-    // form.method = "POST";
-    // form.submit();
+      
+    //..and submit the form to MTurk
+    //form.action = turk.turkSubmitTo + "/mturk/externalSubmit";
+    //form.method = "POST";
+    //form.submit();
   }
   
   // simulate $(document).ready() to show the preview warning

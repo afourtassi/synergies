@@ -22,7 +22,7 @@ theme_set(theme_bw())
 Data. 
 
 ```{r}
-d <- read_delim("data_expt2.txt", delim = " ") %>%
+d <- read_delim("kids_pilot1_res.txt", delim = " ") %>%
   filter(type == "real")
 ```
 
@@ -40,8 +40,6 @@ ggplot(ms, aes(x = sound_dist, y = mean, col = factor(concept_dist))) +
   geom_line() + 
   facet_grid(.~condition)
 ```
-
-
 
 
 Now break out by conditions. 
@@ -62,27 +60,21 @@ joint <- d %>%
   group_by(concept_dist, sound_dist) %>%
   multi_boot_standard(col = "answer")
 
-ggplot(joint, 
-       aes(x = sound_dist, y = mean, col = factor(concept_dist))) + 
-  geom_pointrange(aes(ymin = ci_lower, ymax = ci_upper), 
-                  position = position_dodge(width = .1)) + 
-  geom_line(lty = 2) + 
-  geom_line(data = sounds, aes(col = 1), col = "black") + 
-  geom_pointrange(data = sounds, aes(ymin = ci_lower, ymax = ci_upper, 
-                                     col = 1), col = "black")
+ggplot(sounds, 
+       aes(x = sound_dist, y = mean))  + geom_point()+geom_line()
+      
+ggplot(concepts, 
+       aes(x = concept_dist, y = mean))  + geom_point()+geom_line()
 
 ggplot(joint, 
-       aes(x = concept_dist, y = mean, col = factor(sound_dist))) + 
-  geom_pointrange(aes(ymin = ci_lower, ymax = ci_upper), 
-                  position = position_dodge(width = .1)) + 
-  geom_line(lty = 2) + 
-  geom_line(data = concepts, aes(col = 1), col = "black") + 
-  geom_pointrange(data = concepts, aes(ymin = ci_lower, ymax = ci_upper, 
-                                     col = 1), col = "black") + 
+       aes(x = sound_dist, y = mean, col = factor(concept_dist))) + 
+  geom_point() + 
+  geom_point(data = sounds, aes(col = 1), col = "black") +
   scale_colour_solarized() 
 
 ```
 
+cues combination
 ```{r}
 opt_combine <- function (x,y) {
    1/(1 + (1/x-1) * (1/y-1))
@@ -109,36 +101,5 @@ ggplot(ms_all,
                   position = position_dodge(width = .1)) + 
   geom_abline(slope = 1, lty = 2) + 
   facet_grid(model~.)
-
-```
-
-```{r}
-entropy <- function(p) {
-  -p*log2(p)-(1-p)*log2(1-p)
-}
-
-noisy <- joint %>% 
-  rename(joint = mean) %>%
-  left_join(select(concepts, concept_dist, mean) %>% 
-              rename(concepts = mean)) %>%
-  left_join(select(sounds, sound_dist, mean) %>% 
-              rename(sounds = mean)) %>%
-  mutate(joint_pred = opt_combine(concepts, sounds)) %>%
-  mutate(sound_entropy=entropy(sounds)) %>%
-  mutate(concept_entropy=entropy(concepts))
-ent <- noisy %>%
-  group_by(sound_dist) %>%
-  mutate(sensitivity=joint[concept_dist==4]-joint[concept_dist==1])
-
-ggplot(noisy,
-       aes(x = sound_entropy, y = joint, col = factor(concept_dist))) +
- geom_pointrange(aes(ymin = ci_lower, ymax = ci_upper), 
-                  position = position_dodge(width = .1)) 
-
-ggplot(ent,
-       aes(x = sound_entropy, y = sensitivity)) +
- geom_point()+geom_line()+scale_y_continuous(limits = c(0.15,0.3))
-
-
 
 ```
